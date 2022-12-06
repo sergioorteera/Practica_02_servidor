@@ -4,6 +4,7 @@ import { TabletService } from '../../domain/services/tablet.service';
 import {Tablet} from '../../domain/models/tablet.model';
 import { TabletController } from './tablets.controller';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { TabletEntity } from 'src/tablets/domain/entities/tablet.entity';
 
 const errReturn = (e: Error, message: string) => {
   return {
@@ -28,7 +29,7 @@ export class TabletControllerImpl implements TabletController {
 
   //@UseGuards(JwtAuthGuard)
   @Post()
-  create(@Body() datos: Tablet) {
+  create(@Body() datos: TabletEntity) {
     try{
       return this.tabletService.create(datos);
     }
@@ -38,7 +39,7 @@ export class TabletControllerImpl implements TabletController {
   }
 
   @Put(":id")
-  update(@Body() datos: Tablet, @Param('id') id: number) {
+  update(@Body() datos: TabletEntity, @Param('id') id: number) {
     try{
       return this.tabletService.update(id, datos);
     }

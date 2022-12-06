@@ -1,19 +1,19 @@
-import { Tablet } from "../models/tablet.model";
+import { InsertResult, UpdateResult } from 'typeorm';
+import { TabletEntity } from '../entities/tablet.entity';
 
 export interface TabletService {
 
-   
-   list(): Tablet[];
+   list(): Promise<TabletEntity[]>;
 
 
-   create(Tablet: Tablet): Tablet;
+   create(tablet: TabletEntity): Promise<InsertResult>;
+ 
 
+   update(id: number, tabletData: TabletEntity): Promise<UpdateResult>;
+ 
 
-   update(id: number, Tablet: Tablet): Tablet
+   delete(id: number): Promise<boolean>;
+ 
 
-
-   delete(id: number): boolean
-
-
-   updateMpgx(id: number, mpgx: number): Tablet
+   updateMpgx(id: number, mpgx: number): Promise<UpdateResult>;
 }

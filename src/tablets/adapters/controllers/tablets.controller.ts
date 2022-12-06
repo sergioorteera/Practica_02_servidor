@@ -1,14 +1,15 @@
-import {Tablet} from '../../domain/models/tablet.model';
+import { TabletEntity } from 'src/tablets/domain/entities/tablet.entity';
+
 
 export interface TabletController {
 
    listTablets();
 
 
-   create(datos: Tablet);
+   create(datos: TabletEntity);
 
 
-   update(datos: Tablet, id: number);
+   update(datos: TabletEntity, id: number);
 
 
    delete(id: number);
