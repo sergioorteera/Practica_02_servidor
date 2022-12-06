@@ -3,7 +3,6 @@ import { TabletService } from '../../domain/services/tablet.service';
 
 import {Tablet} from '../../domain/models/tablet.model';
 import { TabletController } from './tablets.controller';
-import { AuthGuard } from '@nestjs/passport';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 const errReturn = (e: Error, message: string) => {
@@ -27,7 +26,7 @@ export class TabletControllerImpl implements TabletController {
     }
   }
 
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() datos: Tablet) {
     try{
@@ -38,7 +37,6 @@ export class TabletControllerImpl implements TabletController {
     }
   }
 
-  @UseGuards(JwtAuthGuard)
   @Put(":id")
   update(@Body() datos: Tablet, @Param('id') id: number) {
     try{
@@ -49,7 +47,6 @@ export class TabletControllerImpl implements TabletController {
     }
   }
 
-  @UseGuards(JwtAuthGuard)
   @Delete(":id")
   delete(@Param('id') id: number) {
     try{
@@ -60,7 +57,6 @@ export class TabletControllerImpl implements TabletController {
     }
   }
 
-  @UseGuards(JwtAuthGuard)
   @Patch(":id/mpgx/:mpgx")
   updateMpgx(@Param('id') id: number, @Param('mpgx') mpgx: number) {
     try{
