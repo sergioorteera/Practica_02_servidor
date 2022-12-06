@@ -1,10 +1,17 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { TabletControllerImpl } from './tablets/adapters/controllers/tabletsImpl.controller';
+import { TabletServiceImpl } from './tablets/domain/services/tabletImpl.service';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [AuthModule, UsersModule],
+  controllers: [TabletControllerImpl],
+  providers: [
+    {
+      provide: 'TabletService',
+      useClass: TabletServiceImpl
+    }
+  ],
 })
 export class AppModule {}
